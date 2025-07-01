@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Trend Prediction</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For data visualization -->
+</head>
+<style>
+    
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+}
+
+section {
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+</style>
+<body>
+    <header>
+        <h1>Social Media Trend Analysis</h1>
+        <p>Real-Time Trending Topics & Predictions</p>
+    </header>
+
+    <section id="trend-analysis">
+        <h2>Trending Topics</h2>
+        <div id="trend-list">
+            <!-- Dynamic trend topics will be loaded here -->
+        </div>
+    </section>
+
+    <section id="sentiment-analysis">
+        <h2>Sentiment Analysis</h2>
+        <canvas id="sentimentChart"></canvas> <!-- Chart.js for displaying sentiment data -->
+    </section>
+
+    <section id="prediction">
+        <h2>Trend Predictions</h2>
+        <div id="prediction-results">
+            <!-- Prediction results will be displayed dynamically -->
+        </div>
+    </section>
+
+    <footer>
+        <p>Built with ❤ for LPBI project</p>
+    </footer>
+
+    <script>
+        // Fetch trending topics (dummy data for now)
+const trends = [
+    { topic: "AI in Healthcare", mentions: 1250 },
+    { topic: "Climate Change", mentions: 950 },
+    { topic: "Cryptocurrency Trends", mentions: 800 },
+    { topic: "5G Technology", mentions: 650 },
+];
+
+const sentimentData = [65, 15, 20]; // Positive, Negative, Neutral Sentiment percentages
+
+// Display trending topics
+const trendList = document.getElementById("trend-list");
+trends.forEach(trend => {
+    const div = document.createElement("div");
+    div.classList.add("trend-item");
+    div.innerHTML = <strong>${trend.topic}</strong>: ${trend.mentions} mentions;
+    trendList.appendChild(div);
+});
+
+// Setup sentiment analysis chart
+const ctx = document.getElementById('sentimentChart').getContext('2d');
+const sentimentChart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+        labels: ['Positive', 'Negative', 'Neutral'],
+        datasets: [{
+            data: sentimentData,
+            backgroundColor: ['#4CAF50', '#F44336', '#FFC107']
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            }
+        }
+    }
+});
+
+    </script> <!-- External JS for data handling -->
+</body>
+</html>
