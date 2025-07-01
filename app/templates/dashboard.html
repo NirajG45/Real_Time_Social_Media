@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <h1>Trending YouTube News</h1>
+  <div id="posts"></div>
+
+  <script>
+    fetch('/api/youtube')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("posts").innerHTML = data.map(post => `
+          <div>
+            <h3>${post.title}</h3>
+            <p>${post.label} - ${post.confidence}% - ${post.location}</p>
+            <a href="${post.url}" target="_blank">Watch</a>
+          </div>
+        `).join('');
+      });
+  </script>
+</body>
+</html>
+    
+</body>
+</html>
